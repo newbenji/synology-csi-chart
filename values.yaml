@@ -9,11 +9,6 @@ connections:
     https: false        # whether the port expects HTTPS or not
     username: username
     password: password
-  - host: 192.168.1.1
-    port: 5001
-    https: false
-    username: username
-    password: password
 
 images:
   attacher:
