@@ -14,26 +14,45 @@ images:
   attacher:
     image: k8s.gcr.io/sig-storage/csi-attacher
     imagePullPolicy: IfNotPresent
-    tag: v3.3.0
+    tag: v4.2.0
   nodeDriverRegistrar:
     image: k8s.gcr.io/sig-storage/csi-node-driver-registrar
     imagePullPolicy: IfNotPresent
-    tag: v2.3.0
+    tag: v2.6.3
+  plugin:
+    image: synology/synology-csi
+    pullPolicy: IfNotPresent
+    # Defaults to {{ $.Chart.AppVersion }} if empty or not present:
+    tag: ""
   provisioner:
     image: k8s.gcr.io/sig-storage/csi-provisioner
     imagePullPolicy: IfNotPresent
-    tag: v3.0.0
+    tag: v3.4.0
   resizer:
     image: k8s.gcr.io/sig-storage/csi-resizer
     imagePullPolicy: IfNotPresent
-    tag: v1.3.0
+    tag: v1.7.0
   snapshotter:
     image: k8s.gcr.io/sig-storage/csi-snapshotter
     imagePullPolicy: IfNotPresent
-    tag: v4.2.1
+    tag: v6.2.1
+
+installCSIDriver: true
+# Specifies affinity, nodeSelector and tolerations for the node DaemonSet
+node:
+  affinity: { }
+  nodeSelector: { }
+  tolerations: [ ]
+# Specifies affinity, nodeSelector and tolerations for the snapshotter StatefulSet
+snapshotter:
+  affinity: { }
+  nodeSelector: { }
+  tolerations: [ ]
 
 storageClasses:
   delete:
+    # One of true or false (default):
+    ##disabled: false
     ## One of true or false (default):
     #isDefault: false
     ## One of "Retain" or "Delete" (default):

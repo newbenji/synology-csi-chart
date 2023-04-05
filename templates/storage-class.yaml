@@ -1,4 +1,5 @@
 {{- range $name, $value := $.Values.storageClasses }}
+{{- if not .disabled }}
 ---
 {{- with $value | default (dict "isDefault" false) }}
 allowVolumeExpansion: true
